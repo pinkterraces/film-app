@@ -1,2 +1,10 @@
 
 notes
+<<<<<<< Updated upstream
+=======
+node_modules/
+src/.DS_Store
+src/.DS_Store
+src/.DS_Store
+public/.DS_Store
+>>>>>>> Stashed changes
