@@ -1,0 +1,52 @@
+[
+    {
+        "title": "The Fly",
+        "year": "1986",
+        "director": "David Cronenberg"
+    }
+    {
+        "title": "The Dead Zone",
+        "year": "1983",
+        "director": "David Cronenbger"
+    }
+    {
+        "title": "Poltergeist",
+        "year": "1982",
+        "director": "Tobe Hooper"
+    }
+    {
+        "title": "They Live",
+        "year": "1988",
+        "director": "John Carpenter"
+    }
+    {
+        "title": "Near Dark",
+        "year": "1987",
+        "director": "Kathryn Bigelow"
+    }
+    {
+        "title": "Fright Night",
+        "year": "1985",
+        "director": "Tom Holland"
+    }
+    {
+        "title": "Night of The Creeps",
+        "year": "1986",
+        "director": "Fred Dekker"
+    }
+    {
+        "title": "Phenomena",
+        "year": "1985",
+        "director": "Dario Argento"
+    }
+    {
+        "title": "Chopping Mall",
+        "year": "1986",
+        "director": "Jim Wynorski"
+    }
+    {
+        "title": "Hellraiser",
+        "year": "1987",
+        "director": "Clive Barker"
+    }
+]
