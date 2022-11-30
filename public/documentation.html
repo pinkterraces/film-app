@@ -1,45 +1,553 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Documentation | Film Ghost</title>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="#">
-        <!-- link rel="stylesheet" type="text/css" href="src/css/normalize.css" -->
-        <!-- link rel="stylesheet" href="src/css/styles.css" -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display&family=DM+Serif+Text&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <header>
-            <h1>Documentation</h1>
-        </header>
 
-        <section>
-            <h2>Purpose</h2>
-            <p>This app allows users to create a profile and save a list of films they're interested in, 
-                as well as browse and find information on similar films.
-            <p>The API uses Node.js to interface with a database.</p>
+<head>
+  <title>Documentation | Film Ghost</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" type="text/css" href="../src/css/normalize.css">
+  <link rel="stylesheet" href="../src/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display&family=DM+Serif+Text&display=swap"
+    rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-            <figure>
-                <figcaption class="ul_title">Users can:</figcaption>
-                <ul class="ul">
-                    <li>Return a list of all movies</li>
-                    <li>Return data (description, genre, director, image URL, whether it's featured or not) about a single movie by title</li>
-                    <li>Return data about a genre (description) by name/title</li>    
-                    <li>Return data about a director (bio, birth year, death year) by name</li>                
-                    <li>Register</li>    
-                    <li>Update their user info</li>    
-                    <li>Add a movie to their list of favorites</li>
-                    <li>Remove a movie from their list of favorites</li>
-                    <li>Deregister</li> 
-                </ul>
-            </figure>
-        </section>
-        
-        <!-- script src="src/js/polyfill.min.js"></script>
+<body>
+  <header>
+    <h1>Documentation</h1>
+  </header>
+
+  <div class="introduction">
+    <h2>Purpose</h2>
+    <p>This app allows users to create a profile and save a list of films they're interested in,
+      as well as browse and find information on similar films.
+    <p>The API uses Node.js to interface with a database.</p>
+
+    <figure>
+      <figcaption class="ul_title">Users can:</figcaption>
+      <ul class="ul">
+        <li><a>Get list of all movies</a></li>
+        <li>Get a single film (description, genre, director, image URL, whether it's featured or not) about a single
+          movie by
+          title</li>
+        <li>Get details about a specific genre by name/title</li>
+        <li>Return data about a director (bio, birth year, death year) by name</li>
+        <li>Register</li>
+        <li>Update their user info</li>
+        <li>Add a movie to their list of favorites</li>
+        <li>Remove a movie from their list of favorites</li>
+        <li>Deregister</li>
+      </ul>
+    </figure>
+  </div>
+  <div class="api-endpoints">
+    <main>
+      <h2>API Endpoints</h2>
+      <!--ALL MOVIES-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Get list of all movies</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Retrieve all films in database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/movies</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>GET</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>JSON object with list of all films and their data</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/movies</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+                <code>[
+                  {
+                      "title": "The Fly",
+                      "year": "1986",
+                      "director": {
+                          "name": "David Cronenberg",
+                          "dateOfBirth": "October 12 1962",
+                          "biography": "Made some films"
+                      },
+                      "genre": {
+                          "name": "Horror",
+                          "description": "The key focus horror is to elicit a sense of dread
+                          in the reader through frightening images, themes, and situations."
+                      }
+                  },
+                  {
+                      "title": "The Dead Zone",
+                      "year": "1983",
+                      "director": {
+                          "name": "David Cronenberg",
+                          "dateOfBirth": "October 12 1962",
+                          "biography": "Made some films"
+                      },
+                      "genre": {
+                          "name": "Horror",
+                          "description": "The key focus horror is to elicit a sense of dread
+                          in the reader through frightening images, themes, and situations."
+                      }
+                  }
+              ]
+                </code>
+              </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--SINGLE MOVIE-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Get individual movie</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Retrieve individual movie from database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/movies/[title]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>title</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>GET</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with movie title</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>JSON object with films data</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/movies/Movie%20Title</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+                <code>{
+                  "title": "The Dead Zone",
+                  "year": "1983",
+                  "director": {
+                      "name": "David Cronenberg",
+                      "dateOfBirth": "October 12 1962",
+                      "biography": "Made some films"
+                  },
+                  "genre": {
+                      "name": "Horror",
+                      "description": "The key focus horror is to elicit a sense of dread
+                      in the reader through frightening images, themes, and situations."
+                  }
+              }
+                </code>
+              </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--GET GENRE-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Get Genre</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Retrieve genre information from database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/movies/genre/[genreName]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>genreName</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>GET</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with genre name</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>JSON object with name and description of genre</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/movies/genre/Genre%20Name</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+                <code>{
+                  "name": "Horror",
+                  "description": "The key focus horror is to elicit a sense of dread
+                  in the reader through frightening images, themes, and situations."
+              }
+                </code>
+              </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--GET DIRECTOR-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Get Director</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Retrieve information about director from database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/movies/genre/[directorName]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>directorName</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>GET</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with director name</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>JSON object with director data</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/movies/genre/Director%20Name</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+            <code>{
+              "name": "John Carpenter",
+              "dateOfBirth": "October 12 1962",
+              "biography": "Made some films"
+          }
+            </code>
+          </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--CREATE NEW USER-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Create New User</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Create a new user account in the database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/users</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>POST</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>JOSN object with mandatory key and value for "name"</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>JSON with user data + newly created user ID</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>
+              <pre><code>{ "name": "Mary Smith" }</code></pre>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+          <code>{
+            "name": "Mary Smith",
+            "id": "7bcfdda0-ea20-486c-b8e4-77dcbf4b0625"
+        }
+          </code>
+        </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--UPDATE USER NAME-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Update User Name</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Update user name in the database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/users/[Id]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>Id</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>PUT</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>URL with user id and JSON providing the user name with key "name"</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>Text confirmation with new username</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/users/1<br>
+              <pre><code>{ "name": "Mary Brown" }</code></pre>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>
+              <pre>
+          <code>{
+            "id": 2,
+            "name": "Mary Brown",
+            "favouriteMovies": [
+                "The Fly"
+            ]
+        }
+          </code>
+        </pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--DELETE USER-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Delete User</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Delete user from the database</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/users/[Id]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>Id</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>DELETE</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with user id</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>Text confirmation with username that was removed</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/users/2</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>"User with ID: 2 has been deleted"</td>
+          </tr>
+        </table>
+      </div>
+      <!--ADD TO FAVOURITES-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Add to favourites</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Adds movie to users list of favourite movies</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/users/[Id]/favourites/[movieTitle]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>Id<br>Movie name in UTF-8 format</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>POST</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with user id and title of movie</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>Text confirmation with name of list + film title added</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/users/2/Movie%20Title</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>"The Swarm has been added to favourites for user with ID: 3"</td>
+          </tr>
+        </table>
+      </div>
+      <!--DELETE FROM FAVOURITES-->
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Delete from favourites</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Purpose / Business Logic</td>
+            <td>Remvoes a movie from users list of favourite movies</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td>/users/[Id]/favourites/[movieTitle]</td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>Id<br>Movie name in UTF-8 format</td>
+          </tr>
+          <tr>
+            <td>HTTP Method</td>
+            <td>DELETE</td>
+          </tr>
+          <tr>
+            <td>Request data format</td>
+            <td>UTF-8 encoded URL with user id and title of movie</td>
+          </tr>
+          <tr>
+            <td>Response data format</td>
+            <td>Text confirmation with name of list + film title removed</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="colspan">Examples</td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>/users/2/Movie%20Title</td>
+          </tr>
+          <tr>
+            <td>Example Response</td>
+            <td>"The Swarm has been removed from user's (ID: 3) favourites"</td>
+          </tr>
+        </table>
+      </div>
+    </main>
+    <!-- script src="src/js/polyfill.min.js"></script>
         <script src="src/js/fetch.umd.js"></script -->
-        <!-- script type="module" src="src/js/test.js"></script -->
-    </body>
+    <!-- script type="module" src="src/js/test.js"></script -->
+</body>
+
 </html>
