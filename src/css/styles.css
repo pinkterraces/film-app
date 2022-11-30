@@ -31,7 +31,7 @@ The rest font-family: 'DM Sans', sans-serif; (400, 700) */
 }
 
 body {
-    background-color: var(--background-grey-color);
+    background-color: var(--lighter-grey-color);
     font-weight: var(--primary-font-weight);
     color: var(--darkest-grey-color);
     font-size: var(--p-font-size);
@@ -50,6 +50,7 @@ h4 {
 h2 {
     font-size: var(--h2-font-size);
     margin: 10px 0px;
+    background-color: var(--primary-pink-color);
 }
 
 p {
@@ -77,7 +78,6 @@ li {
     padding: 0px 0px;
     background-color: var(--lightest-grey-color);
     max-width: fit-content;
-    /*list-style: square;*/
 }
 
 header {
@@ -86,7 +86,41 @@ header {
     width: 100%;
 }
 
+table,
+thead {
+    background-color: #868686;
+}
 
+tr {
+    background-color: #464646;
+}
+
+td,
+th {
+    background-color: #c2c1c1;
+    text-align: left;
+    padding-right: 10px;
+}
+
+th {
+    background-color: #ffaed4;
+}
+
+.colspan {
+    background-color: #ffaed4;
+}
+
+.api-endpoints {
+    background-color: ;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    margin-bottom: 50px;
+}
 
 /*Resets Button*/
 button,
@@ -101,6 +135,9 @@ input[type="reset"] {
     outline: inherit;
 }
 
+
+
+/*
 .pokemon-list__button {
     background-color: var(--lighter-grey-color);
     padding: 5px;
@@ -120,10 +157,10 @@ input[type="reset"] {
     background-color: var(--darker-grey-color);
     border-top: 4px solid var(--darkest-grey-color);
     border-bottom: 0px;
-}
+} */
 
 
-/* MEDIA QUERIES */
+/* MEDIA QUERIES 
 
 @media all and (max-width: 450px) {
     
@@ -144,4 +181,4 @@ input[type="reset"] {
 
 @media all and (min-width: 801px) and (max-width: 1000px) {
     
-}
+} */
