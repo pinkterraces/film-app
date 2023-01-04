@@ -1,11 +1,19 @@
+const { response } = require('express');
 const express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    uuid = require('uuid');
+    uuid = require('uuid'),
+    mongoose = require('mongoose'),
+    Models = require('./models.js'),
+    Movies = Models.Movie,
+    Users = Models.User;
+
+//Connects mongoose to the database
+//mongoose.connect('mongodb://0.0.0.0:27017/dumbslateDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
-
-//DATA
+ 
+// DATA
 let users = [
     {
         "id": 1,
@@ -23,6 +31,7 @@ let users = [
         "favouriteMovies": []
     }
 ]
+
 let movies = [
     {
         "title": "The Fly",
@@ -124,12 +133,13 @@ let movies = [
     }
 ]
 
-//Logs all requests and errors to the console
-app.use(morgan('common'));
 //Body parser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 //Defines public folder for static files
 app.use(express.static('public'));
+//Logs all requests and errors to the console
+app.use(morgan('common'));
 
 //READ Static files
 app.get('/top-ten-movies.json', (req, res) => { });
@@ -151,6 +161,7 @@ app.post("/users", (req, res) => {
         res.status(400).send("Please provide a user name");
     }
 });
+
 
 //UPDATE User name
 app.put("/users/:id", (req, res) => {
@@ -203,12 +214,12 @@ app.delete("/users/:id/favourites/:movieTitle", (req, res) => {
     }
 });
 
-//READ - Get all movies
+//READ - Get all movies NEW *****
 app.get("/movies", (req, res) => {
     res.status(200).json(movies);
 });
 
-//READ - Get single movie by title
+//READ - Get single movie by title NEW *****
 app.get("/movies/:title", (req, res) => {
     const { title } = req.params;
     const movie = movies.find(movie => movie.title === title);
@@ -219,7 +230,7 @@ app.get("/movies/:title", (req, res) => {
     }
 });
 
-//READ - Get information on Genre
+//READ - Get information on Genre NEW *****
 app.get("/movies/genre/:genreName", (req, res) => {
     const { genreName } = req.params;
     const genre = movies.find(movie => movie.genre.name === genreName).genre;
@@ -240,6 +251,7 @@ app.get("/movies/directors/:directorName", (req, res) => {
         res.status(400).send("No directors with that name.");
     }
 });
+
 
 //** SERVER Defines web server port */
 app.listen(8080, () => {
