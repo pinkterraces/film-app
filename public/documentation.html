@@ -83,42 +83,43 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/movies</td>
+            <td>URL:<br>/movies</td>
           </tr>
           <tr>
             <td>Example Response</td>
             <td>
               <pre>
-                <code>[
-                  {
-                      "title": "The Fly",
-                      "year": "1986",
-                      "director": {
-                          "name": "David Cronenberg",
-                          "dateOfBirth": "October 12 1962",
-                          "biography": "Made some films"
-                      },
-                      "genre": {
-                          "name": "Horror",
-                          "description": "The key focus horror is to elicit a sense of dread
-                          in the reader through frightening images, themes, and situations."
-                      }
-                  },
-                  {
-                      "title": "The Dead Zone",
-                      "year": "1983",
-                      "director": {
-                          "name": "David Cronenberg",
-                          "dateOfBirth": "October 12 1962",
-                          "biography": "Made some films"
-                      },
-                      "genre": {
-                          "name": "Horror",
-                          "description": "The key focus horror is to elicit a sense of dread
-                          in the reader through frightening images, themes, and situations."
-                      }
-                  }
-              ]
+                <code>
+  [
+    {
+      "title": "The Fly",
+      "year": "1986",
+      "director": {
+      "name": "David Cronenberg",
+      "dateOfBirth": "October 12 1962",
+      "biography": "Made some films"
+    },
+      "genre": {
+      "name": "Horror",
+      "description": "The key focus horror is to elicit a sense of dread
+      in the reader through frightening images, themes, and situations."
+    }
+    },
+    {
+      "title": "The Dead Zone",
+      "year": "1983",
+      "director": {
+          "name": "David Cronenberg",
+          "dateOfBirth": "October 12 1962",
+          "biography": "Made some films"
+    },
+      "genre": {
+          "name": "Horror",
+          "description": "The key focus horror is to elicit a sense of dread
+          in the reader through frightening images, themes, and situations."
+                }
+    }
+  ]
                 </code>
               </pre>
             </td>
@@ -162,26 +163,27 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/movies/Movie%20Title</td>
+            <td>URL:<br>/movies/Movie%20Title</td>
           </tr>
           <tr>
             <td>Example Response</td>
             <td>
               <pre>
-                <code>{
-                  "title": "The Dead Zone",
-                  "year": "1983",
-                  "director": {
-                      "name": "David Cronenberg",
-                      "dateOfBirth": "October 12 1962",
-                      "biography": "Made some films"
-                  },
-                  "genre": {
-                      "name": "Horror",
-                      "description": "The key focus horror is to elicit a sense of dread
-                      in the reader through frightening images, themes, and situations."
-                  }
-              }
+                <code>
+  {
+    "title": "The Dead Zone",
+    "year": "1983",
+    "director": {
+      "name": "David Cronenberg",
+      "dateOfBirth": "October 12 1962",
+      "biography": "Made some films"
+                },
+      "genre": {
+        "name": "Horror",
+        "description": "The key focus horror is to elicit a sense of dread
+        in the reader through frightening images, themes, and situations."
+                }
+  }
                 </code>
               </pre>
             </td>
@@ -225,17 +227,18 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/movies/genre/Genre%20Name</td>
+            <td>URL:<br>/movies/genre/Genre%20Name</td>
           </tr>
           <tr>
             <td>Example Response</td>
             <td>
               <pre>
-                <code>{
-                  "name": "Horror",
-                  "description": "The key focus horror is to elicit a sense of dread
-                  in the reader through frightening images, themes, and situations."
-              }
+                <code>
+  {
+    "name": "Horror",
+    "description": "The key focus horror is to elicit a sense of dread
+    in the reader through frightening images, themes, and situations."
+  }
                 </code>
               </pre>
             </td>
@@ -256,7 +259,7 @@
           </tr>
           <tr>
             <td>Resource URL</td>
-            <td>/movies/genre/[directorName]</td>
+            <td>/movies/directors/[directorName]</td>
           </tr>
           <tr>
             <td>Parameters</td>
@@ -279,17 +282,18 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/movies/genre/Director%20Name</td>
+            <td>URL:<br>/movies/directors/Director%20Name</td>
           </tr>
           <tr>
             <td>Example Response</td>
             <td>
               <pre>
-            <code>{
-              "name": "John Carpenter",
-              "dateOfBirth": "October 12 1962",
-              "biography": "Made some films"
-          }
+            <code>
+  {
+    "name": "John Carpenter",
+    "dateOfBirth": "October 12 1962",
+    "biography": "Made some films"
+  }
             </code>
           </pre>
             </td>
@@ -322,7 +326,7 @@
           </tr>
           <tr>
             <td>Request data format</td>
-            <td>JOSN object with mandatory key and value for "name"</td>
+            <td>URL with username and JSON providing mandatory user details (Username, Password, Email)</td>
           </tr>
           <tr>
             <td>Response data format</td>
@@ -334,17 +338,30 @@
           <tr>
             <td>Example Request</td>
             <td>
-              <pre><code>{ "name": "Mary Smith" }</code></pre>
+              <pre><code>
+  {
+    "Username": "John Schmitt",
+    "Password": "John123",
+    "Email": "john.schmitt@email.com"
+    "Birthdate": "12.31.86"
+  }
+          </code></pre>
             </td>
           </tr>
           <tr>
             <td>Example Response</td>
             <td>
               <pre>
-          <code>{
-            "name": "Mary Smith",
-            "id": "7bcfdda0-ea20-486c-b8e4-77dcbf4b0625"
-        }
+          <code>
+  {
+    "Username": "John Schmitt",
+    "Password": "John123",
+    "Email": "john.schmitt@email.com",
+    "Birthdate": "1986-12-30T23:00:00.000Z",
+    "FavoriteMovies": [],
+    "_id": "63b5a7ea77dd4e7018e2deb8",
+    "__v": 0
+  }
           </code>
         </pre>
             </td>
@@ -356,20 +373,20 @@
         <table>
           <thead>
             <tr>
-              <th colspan="2">Update User Name</th>
+              <th colspan="2">Update User Details</th>
             </tr>
           </thead>
           <tr>
             <td>Purpose / Business Logic</td>
-            <td>Update user name in the database</td>
+            <td>Update user details in the database</td>
           </tr>
           <tr>
             <td>Resource URL</td>
-            <td>/users/[Id]</td>
+            <td>/users/[Username]</td>
           </tr>
           <tr>
             <td>Parameters</td>
-            <td>Id</td>
+            <td>Username</td>
           </tr>
           <tr>
             <td>HTTP Method</td>
@@ -377,38 +394,175 @@
           </tr>
           <tr>
             <td>Request data format</td>
-            <td>URL with user id and JSON providing the user name with key "name"</td>
+            <td>URL with username and JSON providing mandatory user details (Username, Password, Email)</td>
           </tr>
           <tr>
             <td>Response data format</td>
-            <td>Text confirmation with new username</td>
+            <td>JSON with updated details</td>
           </tr>
           <tr>
             <td colspan="2" class="colspan">Examples</td>
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/users/1<br>
-              <pre><code>{ "name": "Mary Brown" }</code></pre>
+            <td>URL:<br><br>/users/John%20Schmitt<br><br>JSON:<br><br>
+              <pre><code>
+                {
+                  "Username": "Jayden Schmitt",
+                  "Password": "John123",
+                  "Email": "john.schmitt@email.com",
+                  "Birthdate": "12.31.86"
+                }
+            </code></pre>
             </td>
           </tr>
           <tr>
             <td>Example Response</td>
-            <td>
+            <td>JSON:<br><br>
               <pre>
-          <code>{
-            "id": 2,
-            "name": "Mary Brown",
-            "favouriteMovies": [
-                "The Fly"
-            ]
-        }
-          </code>
-        </pre>
+                <code>
+  {
+    "Username": "John Schmitt",
+    "Password": "John123",
+    "Email": "john.schmitt@email.com",
+    "Birthdate": "1986-12-30T23:00:00.000Z",
+    "FavoriteMovies": [],
+    "_id": "63b5a7ea77dd4e7018e2deb8",
+    "__v": 0
+  }
+                </code>
+              </pre>
             </td>
           </tr>
         </table>
       </div>
+            <!--GET ALL USERS-->
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="2">Get all users</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>Purpose / Business Logic</td>
+                  <td>Get all users in database</td>
+                </tr>
+                <tr>
+                  <td>Resource URL</td>
+                  <td>/users</td>
+                </tr>
+                <tr>
+                  <td>Parameters</td>
+                  <td>Username</td>
+                </tr>
+                <tr>
+                  <td>HTTP Method</td>
+                  <td>GET</td>
+                </tr>
+                <tr>
+                  <td>Request data format</td>
+                  <td>URL in UFT-8 format</td>
+                </tr>
+                <tr>
+                  <td>Response data format</td>
+                  <td>JSON with all users and their profile information</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="colspan">Examples</td>
+                </tr>
+                <tr>
+                  <td>Example Request</td>
+                  <td>URL:<br><br>/users</td>
+                </tr>
+                <tr>
+                  <td>Example Response</td>
+                  <td>JSON:<br><br>
+                    <pre>
+                      <code>
+        {
+          "Username": "John Schmitt",
+          "Password": "John123",
+          "Email": "john.schmitt@email.com",
+          "Birthdate": "1986-12-30T23:00:00.000Z",
+          "FavoriteMovies": [],
+          "_id": "63b5a7ea77dd4e7018e2deb8",
+          "__v": 0
+        }
+        {
+          "Username": "Mary Jane Schmitt",
+          "Password": "Mary123",
+          "Email": "mary.jane.schmitt@email.com",
+          "Birthdate": "1986-12-30T23:00:00.000Z",
+          "FavoriteMovies": [],
+          "_id": "63b5a7evf6th87r018e2deb8",
+          "__v": 0
+        }
+                      </code>
+                    </pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!--GET INDIVIDUAL USER-->
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="2">Get individual user</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>Purpose / Business Logic</td>
+                  <td>Get individual user's details from the database</td>
+                </tr>
+                <tr>
+                  <td>Resource URL</td>
+                  <td>/users/[Username]</td>
+                </tr>
+                <tr>
+                  <td>Parameters</td>
+                  <td>Username</td>
+                </tr>
+                <tr>
+                  <td>HTTP Method</td>
+                  <td>PUT</td>
+                </tr>
+                <tr>
+                  <td>Request data format</td>
+                  <td>URL with username</td>
+                </tr>
+                <tr>
+                  <td>Response data format</td>
+                  <td>JSON with user details</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="colspan">Examples</td>
+                </tr>
+                <tr>
+                  <td>Example Request</td>
+                  <td>URL:<br><br>/users/John%20Schmitt</td>
+                </tr>
+                <tr>
+                  <td>Example Response</td>
+                  <td>JSON:<br><br>
+                    <pre>
+                      <code>
+        {
+          "Username": "John Schmitt",
+          "Password": "John123",
+          "Email": "john.schmitt@email.com",
+          "Birthdate": "1986-12-30T23:00:00.000Z",
+          "FavoriteMovies": [],
+          "_id": "63b5a7ea77dd4e7018e2deb8",
+          "__v": 0
+        }
+                      </code>
+                    </pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
       <!--DELETE USER-->
       <div>
         <table>
@@ -423,11 +577,11 @@
           </tr>
           <tr>
             <td>Resource URL</td>
-            <td>/users/[Id]</td>
+            <td>/users/[Username]</td>
           </tr>
           <tr>
             <td>Parameters</td>
-            <td>Id</td>
+            <td>Username</td>
           </tr>
           <tr>
             <td>HTTP Method</td>
@@ -446,11 +600,11 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/users/2</td>
+            <td>URL:<br><br>/users/John%20Schmitt<br><br></td>
           </tr>
           <tr>
             <td>Example Response</td>
-            <td>"User with ID: 2 has been deleted"</td>
+            <td>"[Username] has been deleted"</td>
           </tr>
         </table>
       </div>
@@ -468,11 +622,11 @@
           </tr>
           <tr>
             <td>Resource URL</td>
-            <td>/users/[Id]/favourites/[movieTitle]</td>
+            <td>/users/[Username]/favourites/[movieID]</td>
           </tr>
           <tr>
             <td>Parameters</td>
-            <td>Id<br>Movie name in UTF-8 format</td>
+            <td>Username<br>MovieID</td>
           </tr>
           <tr>
             <td>HTTP Method</td>
@@ -484,18 +638,19 @@
           </tr>
           <tr>
             <td>Response data format</td>
-            <td>Text confirmation with name of list + film title added</td>
+            <td>Text confirmation with name of list + film title added</td><br>
+            <td>JSON File</td><br>
           </tr>
           <tr>
             <td colspan="2" class="colspan">Examples</td>
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/users/2/Movie%20Title</td>
+            <td>/users/John%20Schmitt/movies/639d9725656bde24013e68f3</td>
           </tr>
           <tr>
             <td>Example Response</td>
-            <td>"The Swarm has been added to favourites for user with ID: 3"</td>
+            <td>"Movie added to your favourites!"</td>
           </tr>
         </table>
       </div>
@@ -513,11 +668,11 @@
           </tr>
           <tr>
             <td>Resource URL</td>
-            <td>/users/[Id]/favourites/[movieTitle]</td>
+            <td>/users/[Username]/movies/[MovieId]</td>
           </tr>
           <tr>
             <td>Parameters</td>
-            <td>Id<br>Movie name in UTF-8 format</td>
+            <td>Username<br>MovieId</td>
           </tr>
           <tr>
             <td>HTTP Method</td>
@@ -536,11 +691,11 @@
           </tr>
           <tr>
             <td>Example Request</td>
-            <td>/users/2/Movie%20Title</td>
+            <td>/users/John%20Schmitt/movies/639d9725656bde24013e68f3</td>
           </tr>
           <tr>
             <td>Example Response</td>
-            <td>"The Swarm has been removed from user's (ID: 3) favourites"</td>
+            <td>"Movie removed from your favourites."</td>
           </tr>
         </table>
       </div>
