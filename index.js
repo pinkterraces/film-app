@@ -1,5 +1,5 @@
 const { response } = require('express');
-const { check, validationResult } = requrie('express-validator'); //Serverside validation
+const { check, validationResult } = require('express-validator'); //Serverside validation
 const express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
