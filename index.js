@@ -1,4 +1,5 @@
 const { response } = require('express');
+const { check, validationResult } = requrie('express-validator'); //Serverside validation
 const express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
@@ -19,6 +20,9 @@ const app = express();
 //Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//CORS Cross Origin Resource Sharing
+let cors = require('cors');
+app.use(cors());
 //Authenticaton
 let auth = require('./auth')(app);
 //Defines public folder for static files
@@ -87,7 +91,17 @@ app.get("/movies/directors/:directorName", passport.authenticate('jwt', { sessio
 //USER ENDPOINTS
 
 //CREATE New user registration
-app.post("/users", (req, res) => {
+app.post("/users", 
+    [   check('Username', 'Please enter a username that is at least 5 characters long.').isLength({ min: 5 }), 
+        check('Username', 'Username contaons non-alphanumeric character - not allowed.').isAlphanumeric(),
+        check('Password', 'Password is required.').not().isEmpty(),
+        check('Email', 'Email is not valid.').isEmail()
+    ], (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() })
+    };
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if (user) {
@@ -96,7 +110,7 @@ app.post("/users", (req, res) => {
                 Users
                     .create({
                         Username: req.body.Username,
-                        Password: req.body.Password,
+                        Password: hashedPassword,
                         Email: req.body.Email,
                         Birthdate: req.body.Birthdate
                     }).then((user) => { res.status(201).json(user) })
