@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 //MOVIE ENDPOINTS
 
 //READ - Get all movies
-app.get("/movies", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/movies", (req, res) => {
     Movies.find()
         .then((movies) => {
             return res.status(200).json(movies);
